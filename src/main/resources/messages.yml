@@ -1,0 +1,10 @@
+prefix: "&6[ELO] &f"
+player-not-found: "&cИгрок не найден."
+usage-elo: "&cИспользование: /elo <игрок>"
+elo-stats:
+  - "&6ELO: &e%player%"
+  - "&7Рейтинг: &f%elo% %rank%"
+  - "&7Убийств: &a%kills% &7/ Смертей: &c%deaths% &7/ K/D: &e%kd%"
+top-header: "&6Топ 10 по ELO"
+top-empty: "&7Топ пока пуст."
+top-format: "&6#%num% &e%player% &7- &f%elo% &7ELO"

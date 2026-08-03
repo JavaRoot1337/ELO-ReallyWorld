@@ -1,0 +1,12 @@
+name: ELO
+version: 1.16.5
+main: ru.javaroot.core.EloApp
+api-version: "1.16"
+description: Пвп рейтинг и топ игроков
+authors: [javaroot]
+softdepend: [PlaceholderAPI]
+commands:
+  elo:
+    description: Рейтинг
+  elotop:
+    description: Топ ELO

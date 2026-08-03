@@ -44,9 +44,9 @@ public class CfgMgr {
         }
         messages = YamlConfiguration.loadConfiguration(msgFile);
 
-        eloWin = config.getInt("elo-win", 15);
-        eloLoss = config.getInt("elo-loss", 15);
-        eloDefault = config.getInt("elo-default", 1000);
+        eloWin = config.getInt("elo-win");
+        eloLoss = config.getInt("elo-loss");
+        eloDefault = config.getInt("elo-default");
         
         ranks.clear();
         if (config.isConfigurationSection("ranks")) {
@@ -57,20 +57,20 @@ public class CfgMgr {
                 } catch (NumberFormatException ignored) {}
             }
         }
-        defaultRank = c(config.getString("default-rank", "&6Феномен"));
+        defaultRank = c(config.getString("default-rank"));
         
-        prefix = c(messages.getString("prefix", "&6[ELO] &f"));
-        playerNotFound = c(messages.getString("player-not-found", "&cИгрок не найден."));
-        usageElo = c(messages.getString("usage-elo", "&cИспользование: /elo <игрок>"));
+        prefix = c(messages.getString("prefix"));
+        playerNotFound = c(messages.getString("player-not-found"));
+        usageElo = c(messages.getString("usage-elo"));
         
         eloStats = new ArrayList<>();
         for (String s : messages.getStringList("elo-stats")) {
             eloStats.add(c(s));
         }
         
-        topHeader = c(messages.getString("top-header", "&6=== Топ 10 по ELO ==="));
-        topEmpty = c(messages.getString("top-empty", "&7Топ пока пуст."));
-        topFormat = c(messages.getString("top-format", "&6#%num% &e%player% &7- &f%elo% &7ELO"));
+        topHeader = c(messages.getString("top-header"));
+        topEmpty = c(messages.getString("top-empty"));
+        topFormat = c(messages.getString("top-format"));
     }
 
     private String c(String text) {

@@ -1,28 +1,28 @@
 # ELO
 
-Простой плагин на пвп-рейтинг для копий рилика
+A simple PvP rating plugin for ReallyWorld-like servers.
 
-### Что умеет
-* Выдает и забирает очки ELO за убийства игроков.
-* Система рангов в зависимости от количества ELO.
-* Хранит данные в локальной SQLite (без просадок и лагов при высоком онлайне).
-* Асинхронные запросы и кэширование для топа.
-* Поддержка PlaceholderAPI.
+### Features
+* Gives and takes ELO points for player kills.
+* Rank system based on ELO score.
+* Stores data in a local SQLite database (zero lag or TPS drops, even with high online).
+* Async queries and caching for the leaderboard.
+* PlaceholderAPI support.
 
-### Команды
-* `/elo [ник]` — статистика игрока.
-* `/elotop` — топ-10 сервера.
+### Commands
+* `/elo [player]` — View a player's stats.
+* `/elotop` — Server Top 10 leaderboard.
 
-### Плейсхолдеры (PlaceholderAPI)
-Личные:
+### Placeholders (PlaceholderAPI)
+Personal:
 * `%elo_rating%`
 * `%elo_rank%`
 * `%elo_kills%`
 * `%elo_deaths%`
 * `%elo_kd%`
 
-Глобальные (Топ 1-20):
-Вместо `1` подставляйте число от 1 до 10. Подходят для голограмм.
+Global (Top 1-20):
+Replace 1 with any number from 1 to 10. Perfect for holograms!
 * `%elo_top_name_1%`
 * `%elo_top_rating_1%`
 * `%elo_top_rank_1%`

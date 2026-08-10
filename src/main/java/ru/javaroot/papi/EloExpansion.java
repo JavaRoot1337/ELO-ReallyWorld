@@ -2,13 +2,15 @@ package ru.javaroot.papi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
-import ru.javaroot.core.EloApp;
+import ru.javaroot.core.Elo;
 import ru.javaroot.data.PlayerData;
 
-public class EloExpansion extends PlaceholderExpansion {
-    private final EloApp app;
+import java.util.List;
 
-    public EloExpansion(EloApp app) {
+public class EloExpansion extends PlaceholderExpansion {
+    private final Elo app;
+
+    public EloExpansion(Elo app) {
         this.app = app;
     }
 
@@ -47,14 +49,14 @@ public class EloExpansion extends PlaceholderExpansion {
                     return null;
                 }
                 
-                java.util.List<PlayerData> top = app.getDb().getTopCache();
-                if (index < 0 || index >= 20 || index >= top.size()) {
-                    return "Нет";
+                List<PlayerData> top = app.getRepo().getTopCache();
+                if (index < 0 || index >= top.size()) {
+                    return "";
                 }
                 
                 PlayerData tpd = top.get(index);
                 switch (stat) {
-                    case "name": return tpd.getName() != null ? tpd.getName() : "Unknown";
+                    case "name": return tpd.getName() != null ? tpd.getName() : "";
                     case "rating": return String.valueOf(tpd.getElo());
                     case "rank": return app.getRankUtil().getRank(tpd.getElo());
                     case "kills": return String.valueOf(tpd.getKills());
@@ -67,7 +69,7 @@ public class EloExpansion extends PlaceholderExpansion {
 
         if (p == null) return "";
 
-        PlayerData pd = app.getDb().getCached(p.getUniqueId());
+        PlayerData pd = app.getRepo().getCached(p.getUniqueId());
         if (pd == null) return "";
 
         switch (lowerId) {

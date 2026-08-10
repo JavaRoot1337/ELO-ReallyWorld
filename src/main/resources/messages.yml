@@ -1,10 +1,23 @@
+# префикс
 prefix: "&6[ELO] &f"
+# не найден
 player-not-found: "&cИгрок не найден."
-usage-elo: "&cИспользование: /elo <игрок>"
+# нет прав
+no-perm: "&cНедостаточно прав."
+# подсказки
+usage-elo: "&cИспользование: /elo [ник]"
+usage-admin: "&cИспользование: /elo <give|take|set|reload> [ник] [кол-во]"
+# статистика
 elo-stats:
-  - "&6ELO: &e%player%"
+  - "&6ELO: &f%player%"
   - "&7Рейтинг: &f%elo% %rank%"
   - "&7Убийств: &a%kills% &7/ Смертей: &c%deaths% &7/ K/D: &e%kd%"
+# топ
 top-header: "&6Топ 10 по ELO"
 top-empty: "&7Топ пока пуст."
-top-format: "&6#%num% &e%player% &7- &f%elo% &7ELO"
+top-format: "&6№%num% &f%player% &7- &f%elo% &7ELO"
+# админка
+admin-give-success: "&aИгроку &e%player% &aдобавлено &e%amount% &aELO."
+admin-take-success: "&aУ игрока &e%player% &aзабрано &e%amount% &aELO."
+admin-set-success: "&aИгроку &e%player% &aустановлен рейтинг &e%amount% &aELO."
+admin-reload-success: "&aКонфигурация перезагружена."

@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class RankUtil {
-
     private final CfgMgr cfg;
 
     public RankUtil(CfgMgr cfg) {

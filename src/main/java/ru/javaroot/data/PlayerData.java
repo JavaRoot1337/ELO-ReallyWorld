@@ -1,5 +1,7 @@
 package ru.javaroot.data;
 
+import java.util.Locale;
+
 public class PlayerData {
     private String name;
     private int elo;
@@ -18,7 +20,10 @@ public class PlayerData {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public int getElo() { return elo; }
-    public void setElo(int elo) { this.elo = elo; }
+    public void setElo(int elo) {
+        this.elo = elo;
+        if (this.elo < 0) this.elo = 0;
+    }
     public int getKills() { return kills; }
     public int getDeaths() { return deaths; }
     public boolean isInDb() { return inDb; }
@@ -33,6 +38,6 @@ public class PlayerData {
 
     public String getKd() {
         if (deaths == 0) return String.valueOf(kills);
-        return String.format(java.util.Locale.US, "%.1f", (double) kills / deaths);
+        return String.format(Locale.US, "%.1f", (double) kills / deaths);
     }
 }

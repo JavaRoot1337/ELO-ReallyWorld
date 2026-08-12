@@ -105,6 +105,7 @@ public class PlayerRepo {
                     ps.setInt(4, pd.getKills());
                     ps.setInt(5, pd.getDeaths());
                     ps.executeUpdate();
+                    pd.setInDb(true);
                 }
             }
         } catch (SQLException e) {

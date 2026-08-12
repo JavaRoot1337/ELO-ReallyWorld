@@ -7,7 +7,7 @@ public class PlayerData {
     private int elo;
     private int kills;
     private int deaths;
-    private final boolean inDb;
+    private boolean inDb;
 
     public PlayerData(String name, int elo, int kills, int deaths, boolean inDb) {
         this.name = name;
@@ -27,6 +27,7 @@ public class PlayerData {
     public int getKills() { return kills; }
     public int getDeaths() { return deaths; }
     public boolean isInDb() { return inDb; }
+    public void setInDb(boolean inDb) { this.inDb = inDb; }
 
     public void addElo(int amount) {
         this.elo += amount;

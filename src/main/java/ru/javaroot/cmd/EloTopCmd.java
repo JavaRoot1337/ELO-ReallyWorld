@@ -15,22 +15,23 @@ public class EloTopCmd implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        app.getRepo().getTopAsync(10, top -> {
-            sender.sendMessage(app.getCfg().getPrefix() + app.getCfg().getTopHeader());
-            if (top.isEmpty()) {
-                sender.sendMessage(app.getCfg().getPrefix() + app.getCfg().getTopEmpty());
-                return;
-            }
+        sender.sendMessage(app.getCfg().getPrefix() + app.getCfg().getTopHeader());
+        
+        java.util.List<PlayerData> top = app.getRepo().getTopCache();
+        if (top.isEmpty()) {
+            sender.sendMessage(app.getCfg().getPrefix() + app.getCfg().getTopEmpty());
+            return true;
+        }
 
-            int num = 1;
-            for (PlayerData pd : top) {
-                String line = app.getCfg().getTopFormat()
-                        .replace("%num%", String.valueOf(num++))
-                        .replace("%player%", pd.getName())
-                        .replace("%elo%", String.valueOf(pd.getElo()));
-                sender.sendMessage(line);
-            }
-        });
+        int num = 1;
+        for (int i = 0; i < Math.min(top.size(), 10); i++) {
+            PlayerData pd = top.get(i);
+            String line = app.getCfg().getTopFormat()
+                    .replace("%num%", String.valueOf(num++))
+                    .replace("%player%", pd.getName())
+                    .replace("%elo%", String.valueOf(pd.getElo()));
+            sender.sendMessage(line);
+        }
         return true;
     }
 }

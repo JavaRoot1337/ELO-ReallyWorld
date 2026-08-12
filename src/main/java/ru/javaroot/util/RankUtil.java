@@ -13,11 +13,9 @@ public class RankUtil {
     }
 
     public String getRank(int elo) {
-        TreeMap<Integer, String> ranks = cfg.getRanks();
-        for (Map.Entry<Integer, String> entry : ranks.entrySet()) {
-            if (elo < entry.getKey()) {
-                return entry.getValue();
-            }
+        Map.Entry<Integer, String> entry = cfg.getRanks().floorEntry(elo);
+        if (entry != null) {
+            return entry.getValue();
         }
         return cfg.getDefaultRank();
     }

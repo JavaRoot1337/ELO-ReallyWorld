@@ -1,28 +1,35 @@
 # ELO
 
-A simple PvP rating plugin for ReallyWorld-like servers (1.16.x - 26.1.2).
+PvP rating plugin for Paper and Folia servers (`1.21 – 26.3`).
 
 ### Features
-* Gives and takes ELO points for player kills or duel outcomes (`only-duels`).
-* Dynamic rank system based on ELO score.
-* Stores data in a local SQLite database (zero lag or TPS drops at high online).
-* Async SQL queries and leaderboard caching.
-* Duels plugin integration.
-* Full Tab Completion support for all commands and arguments.
-* PlaceholderAPI support.
+* ELO points for PvP kills or duel outcomes (`only-duels` with Duels hook).
+* Anti-farm cooldown (`kill-cooldown-sec`) and configurable rating bounds (`elo-min`, `elo-max`).
+* Dynamic ranks by ELO threshold with `&` / `&#RRGGBB` / `&RRGGBB` color formatting.
+* Async SQLite (WAL) or MySQL/MariaDB storage via HikariCP, with automatic migration from legacy `players` table.
+* Folia-native schedulers (`AsyncScheduler`, `GlobalRegionScheduler`, `EntityScheduler`) and Paper Brigadier commands.
+* PlaceholderAPI expansion (`%elo_*%`, `%elo_top_*%`).
+
+### Build
+```bash
+./gradlew shadowJar
+# or with system Gradle:
+gradle shadowJar
+```
+Output JAR: `build/libs/ELO-<version>.jar` (Java 21+, Paper/Folia `1.21 – 26.3`).
 
 ### Commands
-* `/elo [player]` — View player stats.
-* `/elotop` — Top 10 leaderboard.
-* `/elo give <player> <amount>` — Add ELO points to a player.
-* `/elo take <player> <amount>` — Remove ELO points from a player.
-* `/elo set <player> <amount>` — Set a player's ELO score.
-* `/elo reload` — Reload configuration files.
+* `/elo [player]` — View player stats (online or offline).
+* `/elotop` — Top players leaderboard.
+* `/elo give <player> <amount>` — Add ELO points.
+* `/elo take <player> <amount>` — Subtract ELO points.
+* `/elo set <player> <amount>` — Set exact ELO score.
+* `/elo reload` — Reload `config.yml` and `messages.yml`.
 
 ### Permissions
 * `elo.use` — Access to `/elo`.
 * `elo.top` — Access to `/elotop`.
-* `elo.admin` — Access to admin management commands.
+* `elo.admin` — Admin rating management and `/elo reload`.
 
 ### Placeholders (PlaceholderAPI)
 Personal:
@@ -32,11 +39,10 @@ Personal:
 * `%elo_deaths%`
 * `%elo_kd%`
 
-Global (Top 1-20):
-Replace `1` with any number from 1 to 20. Perfect for holograms!
-* `%elo_top_name_1%`
-* `%elo_top_rating_1%`
-* `%elo_top_rank_1%`
-* `%elo_top_kills_1%`
-* `%elo_top_deaths_1%`
-* `%elo_top_kd_1%`
+Global (Top 1–20+):
+* `%elo_top_name_<pos>%`
+* `%elo_top_rating_<pos>%`
+* `%elo_top_rank_<pos>%`
+* `%elo_top_kills_<pos>%`
+* `%elo_top_deaths_<pos>%`
+* `%elo_top_kd_<pos>%`

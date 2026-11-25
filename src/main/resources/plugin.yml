@@ -1,12 +1,20 @@
 name: ELO
-version: 26.1.2
-main: ru.javaroot.core.Elo
-api-version: "1.16"
-description: Пвп рейтинг и топ
+version: '${version}'
+main: ru.javaroot.elo.EloPlug
+api-version: '1.21'
+folia-supported: true
+description: пвп-рейтинг и топ игроков
 authors: [javaroot]
-softdepend: [PlaceholderAPI, Duels]
-commands:
-  elo:
-    description: Статистика и управление ELO
-  elotop:
-    description: Топ игроков по ELO
+softdepend:
+  - PlaceholderAPI
+  - Duels
+permissions:
+  elo.use:
+    description: доступ к /elo
+    default: true
+  elo.top:
+    description: доступ к /elotop
+    default: true
+  elo.admin:
+    description: управление рейтингом и перезагрузка конфига
+    default: op

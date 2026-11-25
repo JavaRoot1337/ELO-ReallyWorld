@@ -1,11 +1,34 @@
+# бд: sqlite или mysql
+storage:
+  type: sqlite
+  # для mysql
+  host: localhost
+  port: 3306
+  database: elo
+  user: root
+  password: ""
+  pool-size: 6
+
 # победа
 elo-win: 15
 # поражение
 elo-loss: 15
-# дефолт elo
+# старт
 elo-default: 1000
+# границы рейтинга
+elo-min: 0
+elo-max: 100000
+
+# кд на одного игрока (сек, 0 - выкл)
+kill-cooldown-sec: 300
+
 # обн топа (сек)
 top-update-sec: 60
+# строк в топе
+top-limit: 10
+# автосейв (сек)
+autosave-sec: 60
+
 # только дуэли
 only-duels: false
 

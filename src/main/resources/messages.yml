@@ -1,23 +1,26 @@
-# префикс
-prefix: "&6[ELO] &f"
-# не найден
-player-not-found: "&cИгрок не найден."
-# нет прав
-no-perm: "&cНедостаточно прав."
+# ошибки
+no-perm: "&cНет прав."
+player-not-found: "&cИгрок &f%player% &cне найден."
+only-player: "&cУкажи ник игрока."
+invalid-amount: "&cУкажи целое число."
+
 # подсказки
-usage-elo: "&cИспользование: /elo [ник]"
-usage-admin: "&cИспользование: /elo <give|take|set|reload> [ник] [кол-во]"
+usage-elo: "&7Использование: &f/elo [ник]"
+usage-admin: "&7Использование: &f/elo <give|take|set|reload> [ник] [кол-во]"
+
 # статистика
 elo-stats:
-  - "&6ELO: &f%player%"
+  - "&#ffb703ELO: &f%player%"
   - "&7Рейтинг: &f%elo% %rank%"
-  - "&7Убийств: &a%kills% &7/ Смертей: &c%deaths% &7/ K/D: &e%kd%"
+  - "&7Убийства: &a%kills% &8/ &7Смерти: &c%deaths% &8/ &7K/D: &e%kd%"
+
 # топ
-top-header: "&6Топ 10 по ELO"
+top-header: "&#ffb703Топ %limit% по ELO"
 top-empty: "&7Топ пока пуст."
-top-format: "&6№%num% &f%player% &7- &f%elo% &7ELO"
+top-format: "&#ffb703№%num% &f%player% &8— &f%elo% &7ELO"
+
 # админка
-admin-give-success: "&aИгроку &e%player% &aдобавлено &e%amount% &aELO."
-admin-take-success: "&aУ игрока &e%player% &aзабрано &e%amount% &aELO."
-admin-set-success: "&aИгроку &e%player% &aустановлен рейтинг &e%amount% &aELO."
-admin-reload-success: "&aКонфигурация перезагружена."
+admin-give: "&aИгроку &f%player% &aдобавлено &f%amount% &aELO."
+admin-take: "&aУ игрока &f%player% &aсписано &f%amount% &aELO."
+admin-set: "&aИгроку &f%player% &aустановлен рейтинг &f%amount% &aELO."
+admin-reload: "&aКонфиг перезагружен &7(%ms% мс)."

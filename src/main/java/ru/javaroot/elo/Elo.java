@@ -18,7 +18,7 @@ import ru.javaroot.elo.svc.EloSvc;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-public final class EloPlug extends JavaPlugin {
+public final class Elo extends JavaPlugin {
     private CfgLoad cfgLoad;
     private Exec exec;
     private Db db;

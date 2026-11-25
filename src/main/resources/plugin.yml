@@ -1,6 +1,6 @@
 name: ELO
 version: '${version}'
-main: ru.javaroot.elo.EloPlug
+main: ru.javaroot.elo.Elo
 api-version: '1.21'
 folia-supported: true
 description: пвп-рейтинг и топ игроков

@@ -1,46 +1,57 @@
 # ELO
 
-Плагин на PvP-рейтинг для серверов Paper и Folia (`1.21 – 26.3`).
+Плагин PvP-рейтинга, рангов и таблицы лидеров для Paper и Folia `1.21–26.3`.
 
-### Возможности
-* Начисление и снятие ELO за PvP-убийства или победы в дуэлях (`only-duels` с поддержкой Duels).
-* Защита от фарма (`kill-cooldown-sec`) и настраиваемые границы рейтинга (`elo-min`, `elo-max`).
-* Гибкая система рангов с цветами `&` / `&#RRGGBB` / `&RRGGBB`.
-* Хранилище SQLite (WAL) или MySQL/MariaDB через `HikariCP`, авто-миграция со старой таблицы `players`.
-* Полная совместимость с Folia (`AsyncScheduler`, `GlobalRegionScheduler`, `EntityScheduler`) и Brigadier-команды Paper.
-* Интеграция с PlaceholderAPI (`%elo_*%`, `%elo_top_*%`).
+## Совместимость
 
-### Сборка
-```bash
-gradle shadowJar
+| Параметр | Значение |
+| --- | --- |
+| Ядро | Paper, Folia (`folia-supported: true`) |
+| Minecraft | `1.21 – 26.3` |
+| Java | `21+` |
+| Опционально | `PlaceholderAPI`, `Duels` |
+
+## Сборка
+
+```powershell
+.\gradlew.bat shadowJar
 ```
-Готовый плагин: `build/libs/ELO-<version>.jar` (Java 21+, Paper/Folia `1.21 – 26.3`).
 
-### Команды
-* `/elo [ник]` — статистика игрока (онлайн и оффлайн).
-* `/elotop` — топ игроков по ELO.
-* `/elo give <ник> <кол-во>` — выдать ELO.
-* `/elo take <ник> <кол-во>` — списать ELO.
-* `/elo set <ник> <кол-во>` — установить ELO.
-* `/elo reload` — перезагрузить `config.yml` и `messages.yml`.
+Итоговый JAR: `build/libs/ELO-26.2.0.jar`.
 
-### Права
-* `elo.use` — доступ к `/elo`.
-* `elo.top` — доступ к `/elotop`.
-* `elo.admin` — управление рейтингом и перезагрузка конфига.
+## Команды
 
-### Плейсхолдеры (PlaceholderAPI)
-Личные:
-* `%elo_rating%`
-* `%elo_rank%`
-* `%elo_kills%`
-* `%elo_deaths%`
-* `%elo_kd%`
+| Команда | Действие | Право |
+| --- | --- | --- |
+| `/elo [ник]` | Статистика игрока | `elo.use` |
+| `/elotop` | Топ игроков по ELO | `elo.top` |
+| `/elo give <ник> <кол-во>` | Выдать ELO | `elo.admin` |
+| `/elo take <ник> <кол-во>` | Списать ELO | `elo.admin` |
+| `/elo set <ник> <кол-во>` | Установить ELO | `elo.admin` |
+| `/elo reload` | Перезагрузить `config.yml` и `messages.yml` | `elo.admin` |
 
-Топ (1–20+):
-* `%elo_top_name_<место>%`
-* `%elo_top_rating_<место>%`
-* `%elo_top_rank_<место>%`
-* `%elo_top_kills_<место>%`
-* `%elo_top_deaths_<место>%`
-* `%elo_top_kd_<место>%`
+## Права
+
+| Право | Назначение | По умолчанию |
+| --- | --- | --- |
+| `elo.use` | Доступ к `/elo` | всем |
+| `elo.top` | Доступ к `/elotop` | всем |
+| `elo.admin` | Управление рейтингом и reload | op |
+
+## Конфигурация и БД
+
+`plugins/ELO/config.yml`:
+
+- `storage.type` — `sqlite` (WAL) или `mysql` (MySQL/MariaDB через HikariCP)
+- `elo-win`, `elo-loss`, `elo-default`, `elo-min`, `elo-max`
+- `kill-cooldown-sec` — анти-фарм кулдаун (`0` — выкл)
+- `only-duels` — учитывать только матчи Duels
+- `ranks` и `default-rank` — цвета `&`, `&#RRGGBB`, `&RRGGBB`
+
+## Плейсхолдеры
+
+Личные: `%elo_rating%`, `%elo_rank%`, `%elo_kills%`, `%elo_deaths%`, `%elo_kd%`
+
+Топ: `%elo_top_name_<место>%`, `%elo_top_rating_<место>%`, `%elo_top_rank_<место>%`, `%elo_top_kills_<место>%`, `%elo_top_deaths_<место>%`, `%elo_top_kd_<место>%`
+
+[English documentation](README.md)

@@ -1,48 +1,57 @@
 # ELO
 
-PvP rating plugin for Paper and Folia servers (`1.21 – 26.3`).
+PvP ELO rating, rank thresholds, and leaderboard for Paper and Folia `1.21–26.3`.
 
-### Features
-* ELO points for PvP kills or duel outcomes (`only-duels` with Duels hook).
-* Anti-farm cooldown (`kill-cooldown-sec`) and configurable rating bounds (`elo-min`, `elo-max`).
-* Dynamic ranks by ELO threshold with `&` / `&#RRGGBB` / `&RRGGBB` color formatting.
-* Async SQLite (WAL) or MySQL/MariaDB storage via HikariCP, with automatic migration from legacy `players` table.
-* Folia-native schedulers (`AsyncScheduler`, `GlobalRegionScheduler`, `EntityScheduler`) and Paper Brigadier commands.
-* PlaceholderAPI expansion (`%elo_*%`, `%elo_top_*%`).
+## Compatibility
 
-### Build
-```bash
-./gradlew shadowJar
-# or with system Gradle:
-gradle shadowJar
+| Parameter | Value |
+| --- | --- |
+| Core | Paper, Folia (`folia-supported: true`) |
+| Minecraft | `1.21 – 26.3` |
+| Java | `21+` |
+| Optional | `PlaceholderAPI`, `Duels` |
+
+## Build
+
+```powershell
+.\gradlew.bat shadowJar
 ```
-Output JAR: `build/libs/ELO-<version>.jar` (Java 21+, Paper/Folia `1.21 – 26.3`).
 
-### Commands
-* `/elo [player]` — View player stats (online or offline).
-* `/elotop` — Top players leaderboard.
-* `/elo give <player> <amount>` — Add ELO points.
-* `/elo take <player> <amount>` — Subtract ELO points.
-* `/elo set <player> <amount>` — Set exact ELO score.
-* `/elo reload` — Reload `config.yml` and `messages.yml`.
+Output JAR: `build/libs/ELO-26.2.0.jar`.
 
-### Permissions
-* `elo.use` — Access to `/elo`.
-* `elo.top` — Access to `/elotop`.
-* `elo.admin` — Admin rating management and `/elo reload`.
+## Commands
 
-### Placeholders (PlaceholderAPI)
-Personal:
-* `%elo_rating%`
-* `%elo_rank%`
-* `%elo_kills%`
-* `%elo_deaths%`
-* `%elo_kd%`
+| Command | Action | Permission |
+| --- | --- | --- |
+| `/elo [player]` | Show player ELO stats | `elo.use` |
+| `/elotop` | Show top players leaderboard | `elo.top` |
+| `/elo give <player> <amount>` | Add ELO points | `elo.admin` |
+| `/elo take <player> <amount>` | Subtract ELO points | `elo.admin` |
+| `/elo set <player> <amount>` | Set exact ELO score | `elo.admin` |
+| `/elo reload` | Reload `config.yml` and `messages.yml` | `elo.admin` |
 
-Global (Top 1–20+):
-* `%elo_top_name_<pos>%`
-* `%elo_top_rating_<pos>%`
-* `%elo_top_rank_<pos>%`
-* `%elo_top_kills_<pos>%`
-* `%elo_top_deaths_<pos>%`
-* `%elo_top_kd_<pos>%`
+## Permissions
+
+| Permission | Purpose | Default |
+| --- | --- | --- |
+| `elo.use` | Use `/elo` | all |
+| `elo.top` | Use `/elotop` | all |
+| `elo.admin` | Manage ratings and reload | op |
+
+## Configuration & storage
+
+`plugins/ELO/config.yml`:
+
+- `storage.type` — `sqlite` (WAL) or `mysql` (MySQL/MariaDB via HikariCP)
+- `elo-win`, `elo-loss`, `elo-default`, `elo-min`, `elo-max`
+- `kill-cooldown-sec` — anti-farm cooldown (`0` disables)
+- `only-duels` — count only Duels matches
+- `ranks` & `default-rank` — `&` and `&#RRGGBB` / `&RRGGBB` formatting
+
+## Placeholders
+
+Personal: `%elo_rating%`, `%elo_rank%`, `%elo_kills%`, `%elo_deaths%`, `%elo_kd%`
+
+Leaderboard: `%elo_top_name_<pos>%`, `%elo_top_rating_<pos>%`, `%elo_top_rank_<pos>%`, `%elo_top_kills_<pos>%`, `%elo_top_deaths_<pos>%`, `%elo_top_kd_<pos>%`
+
+[Русская документация](READMERU.md)
